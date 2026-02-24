@@ -315,11 +315,8 @@ document.getElementById('signup-form').addEventListener('submit',function(e){
   // Show success
   this.style.display='none';
   document.getElementById('form-msg').style.display='block';
-  // Post to Google Apps Script if configured
-  var sheetUrl=window.SHEET_WEBHOOK;
-  if(sheetUrl){
-    fetch(sheetUrl,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,ts:new Date().toISOString()})}).catch(function(){});
-  }
+  // Post to Google Apps Script
+  fetch('https://script.google.com/macros/s/AKfycbznFRw_C6ZtcDhFpwT6dt6pg3lWwRibyIjYFVZh-jv8YQMVZiRwozm79put6xjPOih66A/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,ts:new Date().toISOString()})}).catch(function(){});
 });
 </script>
 </body>
