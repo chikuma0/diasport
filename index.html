@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Diasport — Amateras DJs and Friends</title>
+<meta name="description" content="Diasport — DJ event by Amateras DJs and Friends. Friday 27 Feb 2026, 19:00–22:00 at RecordCity, Nishi-Shinjuku, Tokyo.">
+<meta property="og:title" content="Diasport — Amateras DJs and Friends">
+<meta property="og:description" content="Friday 27 Feb 2026 · 19:00–22:00 · RecordCity, Nishi-Shinjuku, Tokyo · All Welcome">
+<meta property="og:image" content="https://diasport.world/flyer-original.jpg">
+<meta property="og:url" content="https://diasport.world">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Diasport — Amateras DJs and Friends">
+<meta name="twitter:description" content="Friday 27 Feb 2026 · 19:00–22:00 · RecordCity, Nishi-Shinjuku, Tokyo">
+<meta name="twitter:image" content="https://diasport.world/flyer-original.jpg">
+<link rel="canonical" href="https://diasport.world">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23DAA520'/></svg>">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Hiragino Sans','Hiragino Kaku Gothic ProN',Meiryo,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#87CEEB 0%,#b8e4f9 40%,#e8f4fb 70%,#fff 100%);color:#222;min-height:100vh;overflow-x:hidden}
+
+/* SPLASH */
+#splash{position:fixed;inset:0;z-index:100;background:linear-gradient(180deg,#6bbfea 0%,#87CEEB 40%,#a8d8f0 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:opacity .6s,visibility .6s}
+#splash.hidden{opacity:0;visibility:hidden;pointer-events:none}
+#splash img{max-width:85vw;max-height:60vh;width:auto;height:auto;object-fit:contain;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+#splash .tap{margin-top:1.5rem;font-size:1.1rem;letter-spacing:.18em;text-transform:uppercase;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.3);animation:pulse 2s ease-in-out infinite}
+#splash .tap-jp{margin-top:.4rem;font-size:.85rem;color:rgba(255,255,255,.8);letter-spacing:.1em}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* MUSIC TOGGLE */
+#music-toggle{position:fixed;top:env(safe-area-inset-top,16px);right:16px;z-index:200;background:rgba(0,0,0,.4);border:none;color:#fff;font-size:1.4rem;width:48px;height:48px;border-radius:50%;cursor:pointer;display:none;align-items:center;justify-content:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:transform .15s}
+#music-toggle:active{transform:scale(.9)}
+#music-toggle.visible{display:flex}
+
+/* MAIN */
+#main{opacity:0;transition:opacity .8s}
+#main.visible{opacity:1}
+
+.hero{text-align:center;padding:2rem 1rem 0}
+.hero img{width:100%;max-width:520px;border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,.15)}
+
+.details{max-width:520px;margin:2rem auto;padding:0 1.5rem}
+.details h1{font-size:2rem;color:#1a1a1a;margin-bottom:.15rem;letter-spacing:.02em}
+.details .crew{font-size:1.1rem;color:#555;margin-bottom:1.5rem}
+.details .info{list-style:none;padding:0}
+.details .info li{padding:.6rem 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:1rem;display:flex;gap:.7rem;align-items:baseline}
+.details .info li span.label{color:#DAA520;font-weight:700;min-width:5.5rem;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em}
+.details .info li:last-child{border-bottom:none}
+.details .info a{color:#DAA520;text-decoration:none;font-weight:500}
+.details .info a:hover{text-decoration:underline}
+.details .info .jp{font-size:.85rem;color:#888;margin-left:.25rem}
+
+.map{max-width:520px;margin:1.5rem auto;padding:0 1.5rem}
+.map a{display:block;text-align:center;background:#DAA520;color:#fff;font-weight:700;padding:.9rem;border-radius:10px;text-decoration:none;font-size:1rem;transition:background .2s,transform .15s;letter-spacing:.03em}
+.map a:hover{background:#c49318}
+.map a:active{transform:scale(.98)}
+
+.newsletter{max-width:520px;margin:2.5rem auto;padding:0 1.5rem}
+.newsletter h2{font-size:1.2rem;margin-bottom:.4rem;color:#333}
+.newsletter p{font-size:.9rem;color:#666;margin-bottom:1rem}
+.newsletter form{display:flex;gap:.5rem}
+.newsletter input[type=email]{flex:1;padding:.8rem 1rem;border:2px solid #ddd;border-radius:10px;font-size:1rem;outline:none;transition:border .2s}
+.newsletter input[type=email]:focus{border-color:#DAA520}
+.newsletter button{background:#DAA520;color:#fff;border:none;padding:.8rem 1.5rem;border-radius:10px;font-weight:700;font-size:1rem;cursor:pointer;white-space:nowrap;transition:background .2s,transform .15s}
+.newsletter button:hover{background:#c49318}
+.newsletter button:active{transform:scale(.97)}
+.newsletter .form-msg{margin-top:.5rem;font-size:.85rem;color:#4CAF50;display:none}
+
+footer{text-align:center;padding:3rem 1rem 2.5rem;font-size:.8rem;color:#aaa}
+footer a{color:#DAA520;text-decoration:none}
+
+/* Countdown */
+.countdown{max-width:520px;margin:1.5rem auto;padding:0 1.5rem;text-align:center}
+.countdown .label{font-size:.85rem;text-transform:uppercase;letter-spacing:.12em;color:#888;margin-bottom:.5rem}
+.countdown .timer{display:flex;justify-content:center;gap:1rem}
+.countdown .unit{display:flex;flex-direction:column;align-items:center}
+.countdown .unit .num{font-size:2rem;font-weight:700;color:#DAA520;line-height:1}
+.countdown .unit .txt{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:#999;margin-top:.2rem}
+
+@media(max-width:400px){
+  .details h1{font-size:1.5rem}
+  .countdown .unit .num{font-size:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- SPLASH SCREEN -->
+<div id="splash" onclick="enterSite()">
+  <img src="flyer-original.jpg" alt="Diasport flyer" width="600" height="600">
+  <div class="tap">Tap to enter</div>
+  <div class="tap-jp">タップして入場</div>
+</div>
+
+<!-- MUSIC TOGGLE -->
+<button id="music-toggle" aria-label="Toggle music" onclick="toggleMusic()">🔊</button>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bg-music" loop preload="none">
+  <!-- Add music source here: <source src="mix.mp3" type="audio/mpeg"> -->
+</audio>
+
+<!-- MAIN CONTENT -->
+<div id="main">
+  <section class="hero">
+    <img src="flyer-original.jpg" alt="Diasport — Amateras DJs and Friends" width="600" height="600">
+  </section>
+
+  <section class="details">
+    <h1>Diasport</h1>
+    <p class="crew">Amateras DJs and Friends</p>
+    <ul class="info">
+      <li><span class="label">Date</span> Friday, 27 February 2026 <span class="jp">（金）</span></li>
+      <li><span class="label">Time</span> 19:00 – 22:00</li>
+      <li><span class="label">Venue</span> RecordCity <span class="jp">レコードシティ</span></li>
+      <li><span class="label">Address</span> 7-8-3 Nishishinjuku, Shinjuku-ku, Tokyo <span class="jp">新宿区西新宿7-8-3</span></li>
+      <li><span class="label">Entry</span> All Welcome <span class="jp">入場無料</span></li>
+      <li><span class="label">Instagram</span> <a href="https://instagram.com/recordcityjp" target="_blank" rel="noopener">@recordcityjp</a></li>
+    </ul>
+  </section>
+
+  <section class="countdown" id="countdown">
+    <div class="label">Event starts in</div>
+    <div class="timer">
+      <div class="unit"><span class="num" id="cd-days">-</span><span class="txt">Days</span></div>
+      <div class="unit"><span class="num" id="cd-hours">-</span><span class="txt">Hours</span></div>
+      <div class="unit"><span class="num" id="cd-mins">-</span><span class="txt">Mins</span></div>
+    </div>
+  </section>
+
+  <section class="map">
+    <a href="https://maps.google.com/?q=RecordCity+7-8-3+Nishishinjuku+Shinjuku+Tokyo" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+  </section>
+
+  <section class="newsletter">
+    <h2>Stay in the loop ✉️</h2>
+    <p>Get notified about future Diasport events. 次回のイベント情報をお届けします。</p>
+    <form id="signup-form">
+      <input type="email" name="email" placeholder="your@email.com" required>
+      <button type="submit">Join</button>
+    </form>
+    <div class="form-msg" id="form-msg">You're on the list! 🎶</div>
+  </section>
+
+  <footer>© 2026 Diasport</footer>
+</div>
+
+<script>
+function enterSite(){
+  document.getElementById('splash').classList.add('hidden');
+  document.getElementById('main').classList.add('visible');
+  document.getElementById('music-toggle').classList.add('visible');
+  var a=document.getElementById('bg-music');
+  if(a.querySelector('source'))a.play().catch(function(){});
+}
+var muted=false;
+function toggleMusic(){
+  var a=document.getElementById('bg-music'),b=document.getElementById('music-toggle');
+  muted=!muted;a.muted=muted;b.textContent=muted?'🔇':'🔊';
+}
+
+// Countdown
+(function(){
+  var target=new Date('2026-02-27T19:00:00+09:00').getTime();
+  function update(){
+    var now=Date.now(),diff=target-now;
+    if(diff<=0){document.getElementById('countdown').innerHTML='<div class="label" style="color:#DAA520;font-weight:700">🎵 Happening Now! 開催中！</div>';return}
+    var d=Math.floor(diff/864e5),h=Math.floor(diff%864e5/36e5),m=Math.floor(diff%36e5/6e4);
+    document.getElementById('cd-days').textContent=d;
+    document.getElementById('cd-hours').textContent=h;
+    document.getElementById('cd-mins').textContent=m;
+  }
+  update();setInterval(update,30000);
+})();
+
+// Newsletter form — stores in localStorage as fallback, posts to Formspree if configured
+document.getElementById('signup-form').addEventListener('submit',function(e){
+  e.preventDefault();
+  var email=this.querySelector('input[type=email]').value;
+  // Store locally
+  var subs=JSON.parse(localStorage.getItem('diasport_subs')||'[]');
+  subs.push({email:email,ts:new Date().toISOString()});
+  localStorage.setItem('diasport_subs',JSON.stringify(subs));
+  // Show success
+  this.style.display='none';
+  document.getElementById('form-msg').style.display='block';
+  // Try Formspree if configured
+  var formspreeId=window.FORMSPREE_ID;
+  if(formspreeId){
+    fetch('https://formspree.io/f/'+formspreeId,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email})}).catch(function(){});
+  }
+});
+</script>
+</body>
+</html>
