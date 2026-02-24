@@ -18,82 +18,158 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23DAA520'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+:root{--gold:#DAA520;--gold-dark:#b8860b;--gold-glow:rgba(218,165,32,.3);--sky:#87CEEB;--sky-deep:#4a9ece;--sky-light:#b8e4f9;--ink:#1a1a2e;--ink-soft:#444;--cream:#fdf8ef}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Hiragino Sans','Hiragino Kaku Gothic ProN',Meiryo,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#87CEEB 0%,#b8e4f9 40%,#e8f4fb 70%,#fff 100%);color:#222;min-height:100vh;overflow-x:hidden}
+body{font-family:'Space Grotesk',-apple-system,BlinkMacSystemFont,'Hiragino Sans',sans-serif;background:var(--ink);color:#eee;min-height:100vh;overflow-x:hidden}
 
-/* SPLASH */
-#splash{position:fixed;inset:0;z-index:100;background:linear-gradient(180deg,#6bbfea 0%,#87CEEB 40%,#a8d8f0 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:opacity .6s,visibility .6s}
-#splash.hidden{opacity:0;visibility:hidden;pointer-events:none}
-#splash img{max-width:min(92vw,520px);max-height:85vh;width:auto;height:auto;object-fit:contain;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.2)}
-#splash .tap{margin-top:1.5rem;font-size:1.1rem;letter-spacing:.18em;text-transform:uppercase;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.3);animation:pulse 2s ease-in-out infinite}
-#splash .tap-jp{margin-top:.4rem;font-size:.85rem;color:rgba(255,255,255,.8);letter-spacing:.1em}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+/* === SPLASH === */
+#splash{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:opacity .8s cubic-bezier(.4,0,.2,1),transform .8s cubic-bezier(.4,0,.2,1),visibility .8s}
+#splash::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#3a7cb8 0%,#6bbfea 30%,#87CEEB 60%,#a8d8f0 100%)}
+#splash .clouds{position:absolute;inset:0;overflow:hidden;opacity:.6}
+#splash .cloud{position:absolute;background:#fff;border-radius:50%;filter:blur(20px);animation:drift linear infinite}
+#splash .cloud:nth-child(1){width:200px;height:60px;top:15%;left:-10%;animation-duration:25s}
+#splash .cloud:nth-child(2){width:300px;height:80px;top:35%;left:-20%;animation-duration:35s;animation-delay:-10s}
+#splash .cloud:nth-child(3){width:150px;height:50px;top:60%;left:-8%;animation-duration:20s;animation-delay:-5s}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(calc(100vw + 300px))}}
+#splash.hidden{opacity:0;transform:scale(1.1);visibility:hidden;pointer-events:none}
+#splash img{position:relative;z-index:1;max-width:min(88vw,480px);max-height:75vh;width:auto;height:auto;object-fit:contain;border-radius:16px;box-shadow:0 12px 48px rgba(0,0,0,.3),0 0 80px rgba(218,165,32,.2);animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+#splash .cta{position:relative;z-index:1;margin-top:2rem;display:flex;flex-direction:column;align-items:center;gap:.3rem}
+#splash .tap{font-family:'Fredoka',sans-serif;font-size:1.2rem;letter-spacing:.25em;text-transform:uppercase;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.4);animation:pulse 2.5s ease-in-out infinite}
+#splash .tap-jp{font-size:.85rem;color:rgba(255,255,255,.7);letter-spacing:.15em}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+/* vinyl spinner on splash */
+#splash .vinyl-hint{position:absolute;bottom:8%;z-index:1;width:60px;height:60px;border-radius:50%;border:2px solid rgba(255,255,255,.2);animation:spin 4s linear infinite}
+#splash .vinyl-hint::after{content:'';position:absolute;top:50%;left:50%;width:12px;height:12px;border-radius:50%;background:var(--gold);transform:translate(-50%,-50%)}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-/* MUSIC TOGGLE */
-#music-toggle{position:fixed;top:env(safe-area-inset-top,16px);right:16px;z-index:200;background:rgba(0,0,0,.4);border:none;color:#fff;font-size:1.4rem;width:48px;height:48px;border-radius:50%;cursor:pointer;display:none;align-items:center;justify-content:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:transform .15s}
+/* === MUSIC TOGGLE === */
+#music-toggle{position:fixed;top:max(env(safe-area-inset-top,16px),16px);right:16px;z-index:200;background:rgba(26,26,46,.6);border:1.5px solid rgba(218,165,32,.3);color:#fff;font-size:1.3rem;width:48px;height:48px;border-radius:50%;cursor:pointer;display:none;align-items:center;justify-content:center;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:transform .15s,border-color .3s}
 #music-toggle:active{transform:scale(.9)}
 #music-toggle.visible{display:flex}
+#music-toggle.playing{border-color:var(--gold);box-shadow:0 0 20px var(--gold-glow)}
 
-/* MAIN */
-#main{opacity:0;transition:opacity .8s}
+/* === MAIN === */
+#main{opacity:0;transition:opacity 1s cubic-bezier(.4,0,.2,1);will-change:opacity}
 #main.visible{opacity:1}
 
-.hero{text-align:center;padding:2rem 1rem 0}
-.hero img{width:100%;max-width:520px;border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,.15)}
+/* Sky gradient top section */
+.sky-section{background:linear-gradient(180deg,#3a7cb8 0%,var(--sky) 25%,var(--sky-light) 55%,var(--cream) 85%,var(--ink) 100%);position:relative;overflow:hidden;padding-bottom:4rem}
+.sky-section .cloud-bg{position:absolute;width:100%;height:100%;top:0;left:0;pointer-events:none;overflow:hidden}
+.sky-section .cloud-bg .cloud{position:absolute;background:rgba(255,255,255,.4);border-radius:50%;filter:blur(30px)}
+.sky-section .cloud-bg .cloud:nth-child(1){width:60vw;height:100px;top:5%;left:-10%;animation:drift 40s linear infinite}
+.sky-section .cloud-bg .cloud:nth-child(2){width:40vw;height:80px;top:20%;left:30%;animation:drift 55s linear infinite;animation-delay:-20s}
+.sky-section .cloud-bg .cloud:nth-child(3){width:50vw;height:70px;top:40%;left:-20%;animation:drift 45s linear infinite;animation-delay:-10s}
 
-.details{max-width:520px;margin:2rem auto;padding:0 1.5rem}
-.details h1{font-family:'Fredoka',sans-serif;font-size:2.8rem;color:#DAA520;margin-bottom:.5rem;letter-spacing:.04em;text-shadow:0 3px 0 #b8860b,0 6px 12px rgba(0,0,0,.12)}
-.details .tagline{font-size:1.15rem;color:#444;font-style:italic;margin-bottom:.2rem;line-height:1.5}
-.details .tagline-jp{font-size:.95rem;color:#888;font-style:italic;margin-bottom:1.2rem}
-.details .desc{font-size:1rem;color:#555;line-height:1.6;margin-bottom:.2rem}
-.details .desc-jp{font-size:.9rem;color:#888;margin-bottom:1.5rem;line-height:1.5}
-.details .vol{margin-bottom:1.5rem;padding:1rem 1.2rem;background:rgba(218,165,32,.06);border-radius:10px;border-left:3px solid #DAA520}
-.details .vol h2{font-family:'Fredoka',sans-serif;font-size:1.3rem;color:#DAA520;margin-bottom:.4rem}
-.details .vol p{font-size:.95rem;color:#555;line-height:1.6;margin-bottom:.3rem}
-.details .vol .vol-jp{font-size:.85rem;color:#888}
-.notice{max-width:520px;margin:2rem auto;padding:0 1.5rem;font-size:.8rem;color:#aaa;line-height:1.5}
-.notice p{margin-bottom:.2rem}
-.details .info{list-style:none;padding:0}
-.details .info li{padding:.6rem 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:1rem;display:flex;gap:.7rem;align-items:baseline}
-.details .info li span.label{color:#DAA520;font-weight:700;min-width:5.5rem;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em}
-.details .info li:last-child{border-bottom:none}
-.details .info a{color:#DAA520;text-decoration:none;font-weight:500}
-.details .info a:hover{text-decoration:underline}
-.details .info .jp{font-size:.85rem;color:#888;margin-left:.25rem}
+/* === HERO === */
+.hero{text-align:center;padding:3rem 1rem 0;position:relative;z-index:1}
+.hero img{width:100%;max-width:480px;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.2),0 0 60px rgba(218,165,32,.15);transition:transform .4s}
 
-.map{max-width:520px;margin:1.5rem auto;padding:0 1.5rem}
-.map a{display:block;text-align:center;background:#DAA520;color:#fff;font-weight:700;padding:.9rem;border-radius:10px;text-decoration:none;font-size:1rem;transition:background .2s,transform .15s;letter-spacing:.03em}
-.map a:hover{background:#c49318}
+/* === TITLE SECTION === */
+.title-block{position:relative;z-index:1;text-align:center;padding:2.5rem 1.5rem 1rem;max-width:560px;margin:0 auto}
+.title-block h1{font-family:'Fredoka',sans-serif;font-size:4rem;font-weight:700;color:var(--gold);letter-spacing:.06em;text-shadow:0 4px 0 var(--gold-dark),0 8px 24px rgba(0,0,0,.2);line-height:1;margin-bottom:.8rem;animation:title-in 1s ease-out both;animation-delay:.3s}
+@keyframes title-in{from{opacity:0;transform:translateY(20px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+.title-block .tagline{font-size:1.15rem;color:var(--ink-soft);font-style:italic;line-height:1.6;opacity:0;animation:fade-up .8s ease-out .6s both}
+.title-block .tagline-jp{font-size:.95rem;color:#888;font-style:italic;margin-top:.3rem;opacity:0;animation:fade-up .8s ease-out .8s both}
+@keyframes fade-up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* === DARK SECTION (from cream transition into dark) === */
+.dark-section{background:var(--ink);position:relative;padding:1rem 0 0}
+.dark-section::before{content:'';position:absolute;top:-2px;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+
+/* Waveform decoration */
+.waveform{height:40px;overflow:hidden;display:flex;align-items:end;justify-content:center;gap:3px;padding:1.5rem 0;opacity:.4}
+.waveform span{display:inline-block;width:3px;background:var(--gold);border-radius:2px;animation:wave 1.2s ease-in-out infinite}
+.waveform span:nth-child(1){height:12px;animation-delay:0s}
+.waveform span:nth-child(2){height:20px;animation-delay:.1s}
+.waveform span:nth-child(3){height:28px;animation-delay:.2s}
+.waveform span:nth-child(4){height:16px;animation-delay:.3s}
+.waveform span:nth-child(5){height:32px;animation-delay:.15s}
+.waveform span:nth-child(6){height:24px;animation-delay:.25s}
+.waveform span:nth-child(7){height:18px;animation-delay:.05s}
+.waveform span:nth-child(8){height:30px;animation-delay:.35s}
+.waveform span:nth-child(9){height:14px;animation-delay:.2s}
+.waveform span:nth-child(10){height:22px;animation-delay:.1s}
+.waveform span:nth-child(11){height:26px;animation-delay:.3s}
+@keyframes wave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.3)}}
+
+/* === COPY SECTION === */
+.copy{max-width:520px;margin:0 auto;padding:0 1.5rem}
+.copy .desc{font-size:1.05rem;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:.4rem}
+.copy .desc-jp{font-size:.9rem;color:rgba(255,255,255,.45);margin-bottom:2rem;line-height:1.6}
+
+/* === VOL CARD === */
+.vol-card{max-width:520px;margin:0 auto 2rem;padding:0 1.5rem}
+.vol-card .inner{position:relative;padding:1.5rem;border-radius:16px;background:linear-gradient(135deg,rgba(218,165,32,.08),rgba(218,165,32,.02));border:1px solid rgba(218,165,32,.15);overflow:hidden}
+.vol-card .inner::before{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;border:2px solid rgba(218,165,32,.1);pointer-events:none}
+.vol-card .inner::after{content:'';position:absolute;top:-10px;right:-10px;width:120px;height:120px;border-radius:50%;border:1px solid rgba(218,165,32,.06);pointer-events:none}
+.vol-card h2{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:var(--gold);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+.vol-card h2::before{content:'';display:inline-block;width:36px;height:36px;border-radius:50%;background:radial-gradient(circle,var(--gold-dark) 20%,var(--gold) 22%,transparent 23%,transparent 45%,rgba(218,165,32,.3) 46%,rgba(218,165,32,.3) 48%,transparent 49%);flex-shrink:0;animation:spin 6s linear infinite}
+.vol-card p{font-size:.95rem;color:rgba(255,255,255,.75);line-height:1.65;margin-bottom:.4rem}
+.vol-card .vol-jp{font-size:.85rem;color:rgba(255,255,255,.4)}
+
+/* === INFO GRID === */
+.info-section{max-width:520px;margin:0 auto;padding:2rem 1.5rem}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.info-item{padding:1rem;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:border-color .3s,transform .3s}
+.info-item:hover{border-color:rgba(218,165,32,.2);transform:translateY(-2px)}
+.info-item .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold);margin-bottom:.35rem;font-weight:700}
+.info-item .val{font-size:1rem;color:#eee;line-height:1.4}
+.info-item .jp{font-size:.8rem;color:rgba(255,255,255,.35);margin-top:.2rem}
+.info-item a{color:var(--gold);text-decoration:none;transition:color .2s}
+.info-item a:hover{color:#f0c040}
+.info-item.full{grid-column:1/-1}
+
+/* === COUNTDOWN === */
+.countdown{max-width:520px;margin:0 auto;padding:2rem 1.5rem;text-align:center}
+.countdown .label{font-size:.75rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(255,255,255,.4);margin-bottom:1rem}
+.countdown .timer{display:flex;justify-content:center;gap:1.5rem}
+.countdown .unit{display:flex;flex-direction:column;align-items:center}
+.countdown .unit .num{font-family:'Fredoka',sans-serif;font-size:3rem;font-weight:700;color:var(--gold);line-height:1;text-shadow:0 0 30px var(--gold-glow)}
+.countdown .unit .txt{font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:rgba(255,255,255,.35);margin-top:.4rem}
+
+/* === MAP === */
+.map{max-width:520px;margin:1rem auto;padding:0 1.5rem}
+.map a{display:flex;align-items:center;justify-content:center;gap:.5rem;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#fff;font-weight:700;padding:1rem;border-radius:14px;text-decoration:none;font-size:1rem;transition:transform .2s,box-shadow .2s;letter-spacing:.03em;box-shadow:0 4px 20px rgba(218,165,32,.25)}
+.map a:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(218,165,32,.35)}
 .map a:active{transform:scale(.98)}
 
-.newsletter{max-width:520px;margin:2.5rem auto;padding:0 1.5rem}
-.newsletter h2{font-family:'Fredoka',sans-serif;font-size:1.4rem;margin-bottom:.4rem;color:#333}
-.newsletter p{font-size:.9rem;color:#666;margin-bottom:1rem}
+/* === NEWSLETTER === */
+.newsletter{max-width:520px;margin:3rem auto;padding:0 1.5rem}
+.newsletter h2{font-family:'Fredoka',sans-serif;font-size:1.5rem;margin-bottom:.5rem;color:#eee}
+.newsletter p{font-size:.9rem;color:rgba(255,255,255,.5);margin-bottom:1rem;line-height:1.5}
 .newsletter form{display:flex;gap:.5rem}
-.newsletter input[type=email]{flex:1;padding:.8rem 1rem;border:2px solid #ddd;border-radius:10px;font-size:1rem;outline:none;transition:border .2s}
-.newsletter input[type=email]:focus{border-color:#DAA520}
-.newsletter button{background:#DAA520;color:#fff;border:none;padding:.8rem 1.5rem;border-radius:10px;font-weight:700;font-size:1rem;cursor:pointer;white-space:nowrap;transition:background .2s,transform .15s}
-.newsletter button:hover{background:#c49318}
+.newsletter input[type=email]{flex:1;padding:.85rem 1rem;border:1.5px solid rgba(255,255,255,.1);border-radius:12px;font-size:1rem;background:rgba(255,255,255,.05);color:#eee;outline:none;transition:border .3s,box-shadow .3s;font-family:inherit}
+.newsletter input[type=email]::placeholder{color:rgba(255,255,255,.25)}
+.newsletter input[type=email]:focus{border-color:var(--gold);box-shadow:0 0 20px rgba(218,165,32,.15)}
+.newsletter button{background:var(--gold);color:#fff;border:none;padding:.85rem 1.8rem;border-radius:12px;font-weight:700;font-size:1rem;cursor:pointer;white-space:nowrap;transition:background .2s,transform .15s;font-family:inherit}
+.newsletter button:hover{background:#e6b422}
 .newsletter button:active{transform:scale(.97)}
-.newsletter .form-msg{margin-top:.5rem;font-size:.85rem;color:#4CAF50;display:none}
+.newsletter .form-msg{margin-top:.6rem;font-size:.85rem;color:#6ddb8a;display:none}
 
-footer{text-align:center;padding:3rem 1rem 2.5rem;font-size:.8rem;color:#aaa}
-footer a{color:#DAA520;text-decoration:none}
+/* === NOTICE / FOOTER === */
+.notice{max-width:520px;margin:2rem auto;padding:0 1.5rem;font-size:.75rem;color:rgba(255,255,255,.2);line-height:1.6}
+.notice p{margin-bottom:.3rem}
+footer{text-align:center;padding:3rem 1rem 2.5rem;font-size:.75rem;color:rgba(255,255,255,.2);position:relative}
+footer::before{content:'';display:block;width:40px;height:40px;margin:0 auto 1.5rem;border-radius:50%;background:radial-gradient(circle,var(--ink) 30%,var(--gold-dark) 32%,var(--gold) 34%,transparent 35%,transparent 55%,rgba(218,165,32,.2) 56%,rgba(218,165,32,.2) 58%,transparent 59%,transparent 75%,rgba(218,165,32,.08) 76%,rgba(218,165,32,.08) 78%,transparent 79%);animation:spin 8s linear infinite}
+footer a{color:var(--gold);text-decoration:none}
 
-/* Countdown */
-.countdown{max-width:520px;margin:1.5rem auto;padding:0 1.5rem;text-align:center}
-.countdown .label{font-size:.85rem;text-transform:uppercase;letter-spacing:.12em;color:#888;margin-bottom:.5rem}
-.countdown .timer{display:flex;justify-content:center;gap:1rem}
-.countdown .unit{display:flex;flex-direction:column;align-items:center}
-.countdown .unit .num{font-family:'Fredoka',sans-serif;font-size:2.2rem;font-weight:700;color:#DAA520;line-height:1;text-shadow:0 2px 0 #b8860b}
-.countdown .unit .txt{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:#999;margin-top:.2rem}
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out}
+.reveal.visible{opacity:1;transform:translateY(0)}
 
+/* Responsive */
 @media(max-width:400px){
-  .details h1{font-size:2rem}
-  .countdown .unit .num{font-size:1.5rem}
+  .title-block h1{font-size:2.8rem}
+  .countdown .unit .num{font-size:2rem}
+  .info-grid{grid-template-columns:1fr}
+  .info-item.full{grid-column:auto}
+}
+@media(min-width:700px){
+  .title-block h1{font-size:5rem}
 }
 </style>
 </head>
@@ -101,9 +177,17 @@ footer a{color:#DAA520;text-decoration:none}
 
 <!-- SPLASH SCREEN -->
 <div id="splash" onclick="enterSite()">
+  <div class="clouds">
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+  </div>
   <img src="flyer-original.jpg" alt="Diasport flyer" width="600" height="600">
-  <div class="tap">Tap to enter</div>
-  <div class="tap-jp">タップして入場</div>
+  <div class="cta">
+    <div class="tap">Tap to enter</div>
+    <div class="tap-jp">タップして入場</div>
+  </div>
+  <div class="vinyl-hint"></div>
 </div>
 
 <!-- MUSIC TOGGLE -->
@@ -116,66 +200,118 @@ footer a{color:#DAA520;text-decoration:none}
 
 <!-- MAIN CONTENT -->
 <div id="main">
-  <section class="hero">
-    <img src="flyer-original.jpg" alt="Diasport — Amateras DJs and Friends" width="600" height="600">
-  </section>
 
-  <section class="details">
-    <h1>Diasport</h1>
-    <p class="tagline">Music doesn't stay where it's born. Neither did we.</p>
-    <p class="tagline-jp">音は旅をする。わたしたちと同じように。</p>
-    <p class="desc">A night of diaspora sounds at RecordCity store. Friends and friends' friends, all welcome.</p>
-    <p class="desc-jp">ディアスポラな音楽をレコードシティのお店で楽しむ夜。友達も、そのまた友達もみんなウェルカム。</p>
-    <div class="vol">
-      <h2>Vol.1: Afro Swing</h2>
-      <p>The sound that crossed from the Caribbean to South London and became the UK's heartbeat. Funky rhythms, wavy melodies, sexy vocals and pure energy.</p>
-      <p class="vol-jp">カリブ海からサウスロンドンへ渡りUKの鼓動となったサウンド。ファンキーなリズム、流れるようなメロディ、艶やかなボーカルとピュアエナジーで構成。</p>
+  <!-- SKY SECTION (light → dark transition) -->
+  <div class="sky-section">
+    <div class="cloud-bg">
+      <div class="cloud"></div>
+      <div class="cloud"></div>
+      <div class="cloud"></div>
     </div>
-    <ul class="info">
-      <li><span class="label">Date</span> Friday, 27 February 2026 <span class="jp">（金）</span></li>
-      <li><span class="label">Time</span> 19:00 – 22:00</li>
-      <li><span class="label">Venue</span> RecordCity <span class="jp">レコードシティ</span></li>
-      <li><span class="label">Address</span> 7-8-3 Nishishinjuku, Shinjuku-ku, Tokyo <span class="jp">新宿区西新宿7-8-3</span></li>
-      <li><span class="label">Entry</span> All Welcome <span class="jp">入場無料</span></li>
-      <li><span class="label">Instagram</span> <a href="https://instagram.com/recordcityjp" target="_blank" rel="noopener">@recordcityjp</a></li>
-    </ul>
-  </section>
 
-  <section class="countdown" id="countdown">
-    <div class="label">Event starts in</div>
-    <div class="timer">
-      <div class="unit"><span class="num" id="cd-days">-</span><span class="txt">Days</span></div>
-      <div class="unit"><span class="num" id="cd-hours">-</span><span class="txt">Hours</span></div>
-      <div class="unit"><span class="num" id="cd-mins">-</span><span class="txt">Mins</span></div>
+    <section class="hero">
+      <img src="flyer-original.jpg" alt="Diasport — Amateras DJs and Friends" width="600" height="600">
+    </section>
+
+    <div class="title-block">
+      <h1>Diasport</h1>
+      <p class="tagline">Music doesn't stay where it's born. Neither did we.</p>
+      <p class="tagline-jp">音は旅をする。わたしたちと同じように。</p>
     </div>
-  </section>
-
-  <section class="map">
-    <a href="https://maps.google.com/?q=RecordCity+7-8-3+Nishishinjuku+Shinjuku+Tokyo" target="_blank" rel="noopener">📍 Open in Google Maps</a>
-  </section>
-
-  <section class="newsletter">
-    <h2>Stay in the loop ✉️</h2>
-    <p>Get notified about future Diasport events. 次回のイベント情報をお届けします。</p>
-    <form id="signup-form">
-      <input type="email" name="email" placeholder="your@email.com" required>
-      <button type="submit">Join</button>
-    </form>
-    <div class="form-msg" id="form-msg">You're on the list! 🎶</div>
-  </section>
-
-  <div class="notice">
-    <p>*Audio and ambient visuals from this session will be recorded. Clips may be shared online.</p>
-    <p>*音声と会場の雰囲気を記録して、後日オンラインで共有予定です</p>
   </div>
-  <footer>© 2026 Diasport</footer>
+
+  <!-- DARK SECTION -->
+  <div class="dark-section">
+
+    <div class="waveform" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <section class="copy reveal">
+      <p class="desc">A night of diaspora sounds at RecordCity store. Friends and friends' friends, all welcome.</p>
+      <p class="desc-jp">ディアスポラな音楽をレコードシティのお店で楽しむ夜。友達も、そのまた友達もみんなウェルカム。</p>
+    </section>
+
+    <section class="vol-card reveal">
+      <div class="inner">
+        <h2>Vol.1: Afro Swing</h2>
+        <p>The sound that crossed from the Caribbean to South London and became the UK's heartbeat. Funky rhythms, wavy melodies, sexy vocals and pure energy.</p>
+        <p class="vol-jp">カリブ海からサウスロンドンへ渡りUKの鼓動となったサウンド。ファンキーなリズム、流れるようなメロディ、艶やかなボーカルとピュアエナジーで構成。</p>
+      </div>
+    </section>
+
+    <section class="info-section reveal">
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="lbl">Date</div>
+          <div class="val">Friday, 27 Feb 2026</div>
+          <div class="jp">2月27日（金）</div>
+        </div>
+        <div class="info-item">
+          <div class="lbl">Time</div>
+          <div class="val">19:00 – 22:00</div>
+        </div>
+        <div class="info-item">
+          <div class="lbl">Venue</div>
+          <div class="val">RecordCity</div>
+          <div class="jp">レコードシティ</div>
+        </div>
+        <div class="info-item">
+          <div class="lbl">Entry</div>
+          <div class="val">All Welcome</div>
+          <div class="jp">入場無料</div>
+        </div>
+        <div class="info-item full">
+          <div class="lbl">Address</div>
+          <div class="val">7-8-3 Nishishinjuku, Shinjuku-ku, Tokyo</div>
+          <div class="jp">新宿区西新宿7-8-3</div>
+        </div>
+        <div class="info-item full">
+          <div class="lbl">Instagram</div>
+          <div class="val"><a href="https://instagram.com/recordcityjp" target="_blank" rel="noopener">@recordcityjp</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="countdown reveal" id="countdown">
+      <div class="label">Event starts in</div>
+      <div class="timer">
+        <div class="unit"><span class="num" id="cd-days">-</span><span class="txt">Days</span></div>
+        <div class="unit"><span class="num" id="cd-hours">-</span><span class="txt">Hours</span></div>
+        <div class="unit"><span class="num" id="cd-mins">-</span><span class="txt">Mins</span></div>
+      </div>
+    </section>
+
+    <section class="map reveal">
+      <a href="https://maps.google.com/?q=RecordCity+7-8-3+Nishishinjuku+Shinjuku+Tokyo" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+    </section>
+
+    <section class="newsletter reveal">
+      <h2>Stay in the loop ✉️</h2>
+      <p>Get notified about future Diasport events. 次回のイベント情報をお届けします。</p>
+      <form id="signup-form">
+        <input type="email" name="email" placeholder="your@email.com" required>
+        <button type="submit">Join</button>
+      </form>
+      <div class="form-msg" id="form-msg">You're on the list! 🎶</div>
+    </section>
+
+    <div class="notice">
+      <p>*Audio and ambient visuals from this session will be recorded. Clips may be shared online.</p>
+      <p>*音声と会場の雰囲気を記録して、後日オンラインで共有予定です</p>
+    </div>
+    <footer>© 2026 Diasport</footer>
+  </div>
 </div>
 
 <script>
 function enterSite(){
   document.getElementById('splash').classList.add('hidden');
   document.getElementById('main').classList.add('visible');
-  document.getElementById('music-toggle').classList.add('visible');
+  var b=document.getElementById('music-toggle');
+  b.classList.add('visible');
+  b.classList.add('playing');
   var a=document.getElementById('bg-music');
   if(a.querySelector('source'))a.play().catch(function(){});
 }
@@ -183,6 +319,7 @@ var muted=false;
 function toggleMusic(){
   var a=document.getElementById('bg-music'),b=document.getElementById('music-toggle');
   muted=!muted;a.muted=muted;b.textContent=muted?'🔇':'🔊';
+  b.classList.toggle('playing',!muted);
 }
 
 // Countdown
@@ -190,7 +327,7 @@ function toggleMusic(){
   var target=new Date('2026-02-27T19:00:00+09:00').getTime();
   function update(){
     var now=Date.now(),diff=target-now;
-    if(diff<=0){document.getElementById('countdown').innerHTML='<div class="label" style="color:#DAA520;font-weight:700">🎵 Happening Now! 開催中！</div>';return}
+    if(diff<=0){document.getElementById('countdown').innerHTML='<div class="label" style="color:var(--gold);font-weight:700;font-size:1.1rem">🎵 Happening Now! 開催中！</div>';return}
     var d=Math.floor(diff/864e5),h=Math.floor(diff%864e5/36e5),m=Math.floor(diff%36e5/6e4);
     document.getElementById('cd-days').textContent=d;
     document.getElementById('cd-hours').textContent=h;
@@ -199,18 +336,25 @@ function toggleMusic(){
   update();setInterval(update,30000);
 })();
 
-// Newsletter form — stores in localStorage as fallback, posts to Formspree if configured
+// Scroll reveal (lightweight IntersectionObserver)
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('visible')});return}
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+  },{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(e){obs.observe(e)});
+})();
+
+// Newsletter
 document.getElementById('signup-form').addEventListener('submit',function(e){
   e.preventDefault();
   var email=this.querySelector('input[type=email]').value;
-  // Store locally
   var subs=JSON.parse(localStorage.getItem('diasport_subs')||'[]');
   subs.push({email:email,ts:new Date().toISOString()});
   localStorage.setItem('diasport_subs',JSON.stringify(subs));
-  // Show success
   this.style.display='none';
   document.getElementById('form-msg').style.display='block';
-  // Try Formspree if configured
   var formspreeId=window.FORMSPREE_ID;
   if(formspreeId){
     fetch('https://formspree.io/f/'+formspreeId,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email})}).catch(function(){});
