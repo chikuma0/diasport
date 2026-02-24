@@ -27,7 +27,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Hiragino Sa
 /* SPLASH */
 #splash{position:fixed;inset:0;z-index:100;background:linear-gradient(180deg,#6bbfea 0%,#87CEEB 40%,#a8d8f0 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:opacity .6s,visibility .6s}
 #splash.hidden{opacity:0;visibility:hidden;pointer-events:none}
-#splash img{max-width:92vw;max-height:80vh;width:auto;height:auto;object-fit:contain;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+#splash img{max-width:min(92vw,520px);max-height:85vh;width:auto;height:auto;object-fit:contain;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.2)}
 #splash .tap{margin-top:1.5rem;font-size:1.1rem;letter-spacing:.18em;text-transform:uppercase;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.3);animation:pulse 2s ease-in-out infinite}
 #splash .tap-jp{margin-top:.4rem;font-size:.85rem;color:rgba(255,255,255,.8);letter-spacing:.1em}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
@@ -42,11 +42,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Hiragino Sa
 #main.visible{opacity:1}
 
 .hero{text-align:center;padding:2rem 1rem 0}
-.hero img{width:100%;max-width:480px;border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,.15)}
+.hero img{width:100%;max-width:520px;border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,.15)}
 
 .details{max-width:520px;margin:2rem auto;padding:0 1.5rem}
-.details h1{font-family:'Fredoka',sans-serif;font-size:2.8rem;color:#DAA520;margin-bottom:.15rem;letter-spacing:.04em;text-shadow:0 3px 0 #b8860b,0 6px 12px rgba(0,0,0,.12)}
-.details .crew{font-size:1.1rem;color:#555;margin-bottom:1.5rem}
+.details h1{font-family:'Fredoka',sans-serif;font-size:2.8rem;color:#DAA520;margin-bottom:.5rem;letter-spacing:.04em;text-shadow:0 3px 0 #b8860b,0 6px 12px rgba(0,0,0,.12)}
+.details .tagline{font-size:1.15rem;color:#444;font-style:italic;margin-bottom:.2rem;line-height:1.5}
+.details .tagline-jp{font-size:.95rem;color:#888;font-style:italic;margin-bottom:1.2rem}
+.details .desc{font-size:1rem;color:#555;line-height:1.6;margin-bottom:.2rem}
+.details .desc-jp{font-size:.9rem;color:#888;margin-bottom:1.5rem;line-height:1.5}
+.details .vol{margin-bottom:1.5rem;padding:1rem 1.2rem;background:rgba(218,165,32,.06);border-radius:10px;border-left:3px solid #DAA520}
+.details .vol h2{font-family:'Fredoka',sans-serif;font-size:1.3rem;color:#DAA520;margin-bottom:.4rem}
+.details .vol p{font-size:.95rem;color:#555;line-height:1.6;margin-bottom:.3rem}
+.details .vol .vol-jp{font-size:.85rem;color:#888}
+.notice{max-width:520px;margin:2rem auto;padding:0 1.5rem;font-size:.8rem;color:#aaa;line-height:1.5}
+.notice p{margin-bottom:.2rem}
 .details .info{list-style:none;padding:0}
 .details .info li{padding:.6rem 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:1rem;display:flex;gap:.7rem;align-items:baseline}
 .details .info li span.label{color:#DAA520;font-weight:700;min-width:5.5rem;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em}
@@ -113,7 +122,15 @@ footer a{color:#DAA520;text-decoration:none}
 
   <section class="details">
     <h1>Diasport</h1>
-    <p class="crew">Amateras DJs and Friends</p>
+    <p class="tagline">Music doesn't stay where it's born. Neither did we.</p>
+    <p class="tagline-jp">音は旅をする。わたしたちと同じように。</p>
+    <p class="desc">A night of diaspora sounds at RecordCity store. Friends and friends' friends, all welcome.</p>
+    <p class="desc-jp">ディアスポラな音楽をレコードシティのお店で楽しむ夜。友達も、そのまた友達もみんなウェルカム。</p>
+    <div class="vol">
+      <h2>Vol.1: Afro Swing</h2>
+      <p>The sound that crossed from the Caribbean to South London and became the UK's heartbeat. Funky rhythms, wavy melodies, sexy vocals and pure energy.</p>
+      <p class="vol-jp">カリブ海からサウスロンドンへ渡りUKの鼓動となったサウンド。ファンキーなリズム、流れるようなメロディ、艶やかなボーカルとピュアエナジーで構成。</p>
+    </div>
     <ul class="info">
       <li><span class="label">Date</span> Friday, 27 February 2026 <span class="jp">（金）</span></li>
       <li><span class="label">Time</span> 19:00 – 22:00</li>
@@ -147,6 +164,10 @@ footer a{color:#DAA520;text-decoration:none}
     <div class="form-msg" id="form-msg">You're on the list! 🎶</div>
   </section>
 
+  <div class="notice">
+    <p>*Audio and ambient visuals from this session will be recorded. Clips may be shared online.</p>
+    <p>*音声と会場の雰囲気を記録して、後日オンラインで共有予定です</p>
+  </div>
   <footer>© 2026 Diasport</footer>
 </div>
 
