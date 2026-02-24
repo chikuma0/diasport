@@ -316,7 +316,8 @@ document.getElementById('signup-form').addEventListener('submit',function(e){
   this.style.display='none';
   document.getElementById('form-msg').style.display='block';
   // Post to Google Apps Script
-  fetch('https://script.google.com/macros/s/AKfycbznFRw_C6ZtcDhFpwT6dt6pg3lWwRibyIjYFVZh-jv8YQMVZiRwozm79put6xjPOih66A/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,ts:new Date().toISOString()})}).catch(function(){});
+  var now=new Date();var jst=new Date(now.getTime()+9*36e5);var ts=jst.toISOString().replace('Z','+09:00');
+  fetch('https://script.google.com/macros/s/AKfycbznFRw_C6ZtcDhFpwT6dt6pg3lWwRibyIjYFVZh-jv8YQMVZiRwozm79put6xjPOih66A/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,ts:ts})}).catch(function(){});
 });
 </script>
 </body>
