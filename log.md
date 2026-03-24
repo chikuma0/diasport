@@ -13,3 +13,4 @@
 - Deployed via Vercel (auto from GitHub push)
 - Added video splash: fullscreen autoplay loop background with flyer overlay
 - New asset: splash-video.mp4 (2.4MB)
+- Added story.html: dedicated 9:16 Instagram story screenshot page with live countdown
