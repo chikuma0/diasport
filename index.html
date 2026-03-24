@@ -50,22 +50,14 @@ body{font-family:'Space Grotesk',-apple-system,BlinkMacSystemFont,'Hiragino Sans
 
 
 /* === SPLASH === */
-#splash{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:opacity .8s cubic-bezier(.4,0,.2,1),visibility .8s;background:linear-gradient(180deg,#1a3a2a 0%,#2d8a7a 50%,#0d2818 100%)}
+#splash{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:opacity .8s cubic-bezier(.4,0,.2,1),visibility .8s;background:#0d2818}
 #splash.hidden{opacity:0;visibility:hidden;pointer-events:none}
-#splash .splash-clouds{position:absolute;inset:0;overflow:hidden}
-#splash .splash-clouds .particle{position:absolute;top:-50px}
-#splash .splash-clouds .leaf{border-radius:50% 0 50% 0;filter:blur(1px);opacity:.2}
-#splash .splash-clouds .leaf:nth-child(1){width:28px;height:12px;background:rgba(60,140,80,.4);left:12%;animation:fall 16s linear infinite}
-#splash .splash-clouds .leaf:nth-child(2){width:38px;height:16px;background:rgba(45,120,70,.35);left:55%;animation:fallAlt 20s linear infinite;animation-delay:-4s}
-#splash .splash-clouds .leaf:nth-child(3){width:20px;height:9px;background:rgba(70,150,85,.4);left:80%;animation:fall 14s linear infinite;animation-delay:-9s}
-#splash .splash-clouds .firefly{width:4px;height:4px;border-radius:50%;background:rgba(218,165,32,.8);box-shadow:0 0 8px 3px rgba(218,165,32,.4),0 0 20px 6px rgba(218,165,32,.15)}
-#splash .splash-clouds .firefly:nth-child(4){left:25%;animation:fallAlt 12s linear infinite,twinkle 2.5s ease-in-out infinite;animation-delay:-3s}
-#splash .splash-clouds .firefly:nth-child(5){width:3px;height:3px;left:65%;animation:fall 18s linear infinite,twinkle 3s ease-in-out infinite;animation-delay:-8s}
-#splash .splash-clouds .firefly:nth-child(6){width:5px;height:5px;left:40%;animation:fallAlt 15s linear infinite,twinkle 2.2s ease-in-out infinite;animation-delay:-12s}
-#splash .flyer-wrap{position:relative;z-index:1;width:min(88vw,480px);aspect-ratio:1/1;animation:float 4s ease-in-out infinite}
-#splash .flyer-wrap img{width:100%;height:100%;object-fit:cover;border-radius:16px;box-shadow:0 12px 48px rgba(0,0,0,.25),0 0 60px rgba(218,165,32,.15)}
+.splash-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.splash-overlay{position:absolute;inset:0;background:rgba(0,0,0,.25);z-index:1}
+.splash-flyer{position:relative;z-index:2;width:min(70vw,360px);aspect-ratio:1/1;margin-bottom:2rem;animation:float 4s ease-in-out infinite}
+.splash-flyer img{width:100%;height:100%;object-fit:cover;border-radius:16px;box-shadow:0 12px 48px rgba(0,0,0,.35),0 0 60px rgba(218,165,32,.15)}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-#splash .cta{position:relative;z-index:1;margin-top:2rem;text-align:center}
+#splash .cta{position:relative;z-index:2;text-align:center}
 #splash .tap{font-size:1.1rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.3);animation:pulse 2.5s ease-in-out infinite}
 #splash .tap-jp{font-size:.85rem;color:rgba(255,255,255,.65);letter-spacing:.12em;margin-top:.3rem}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
@@ -211,15 +203,11 @@ footer a{color:var(--gold);text-decoration:none}
 
 <!-- SPLASH SCREEN -->
 <div id="splash" onclick="enterSite()">
-  <div class="splash-clouds">
-    <div class="particle leaf"></div>
-    <div class="particle leaf"></div>
-    <div class="particle leaf"></div>
-    <div class="particle firefly"></div>
-    <div class="particle firefly"></div>
-    <div class="particle firefly"></div>
-  </div>
-  <div class="flyer-wrap">
+  <video class="splash-video" autoplay muted loop playsinline>
+    <source src="splash-video.mp4" type="video/mp4">
+  </video>
+  <div class="splash-overlay"></div>
+  <div class="splash-flyer">
     <img src="flyer-vol2.jpg" alt="Diasport Vol.2 — mitokon" width="2048" height="2048">
   </div>
   <div class="cta">
