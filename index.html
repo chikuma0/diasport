@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Diasport — Amaterrace DJys and Friends</title>
-<meta name="description" content="Diasport — DJ event by Amaterrace DJys and Friends. Friday 27 Feb 2026, 19:00–22:00 at RecordCity, Nishi-Shinjuku, Tokyo.">
-<meta property="og:title" content="Diasport — Amaterrace DJys and Friends">
-<meta property="og:description" content="Friday 27 Feb 2026 · 19:00–22:00 · RecordCity, Nishi-Shinjuku, Tokyo · All Welcome">
-<meta property="og:image" content="https://www.diasport.world/flyer-original.jpg">
+<title>Diasport Vol.2 — mitokon</title>
+<meta name="description" content="Diasport Vol.2 — mitokon (Amapiano DJ Tokyo). Friday 3 Apr 2026, 19:00–22:00 at RecordCity, Nishi-Shinjuku, Tokyo. Free entry.">
+<meta property="og:title" content="Diasport Vol.2 — mitokon">
+<meta property="og:description" content="Friday 3 Apr 2026 · 19:00–22:00 · RecordCity, Nishi-Shinjuku, Tokyo · Free Entry">
+<meta property="og:image" content="https://www.diasport.world/flyer-vol2.jpg">
 <meta property="og:url" content="https://www.diasport.world">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Diasport — Amaterrace DJys and Friends">
-<meta name="twitter:description" content="Friday 27 Feb 2026 · 19:00–22:00 · RecordCity, Nishi-Shinjuku, Tokyo">
-<meta name="twitter:image" content="https://www.diasport.world/flyer-original.jpg">
+<meta name="twitter:title" content="Diasport Vol.2 — mitokon">
+<meta name="twitter:description" content="Friday 3 Apr 2026 · 19:00–22:00 · RecordCity, Nishi-Shinjuku, Tokyo · Free Entry">
+<meta name="twitter:image" content="https://www.diasport.world/flyer-vol2.jpg">
 <link rel="canonical" href="https://www.diasport.world">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,25 +23,45 @@
 :root{--gold:#DAA520;--gold-dark:#b8860b;--gold-glow:rgba(218,165,32,.3)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Space Grotesk',-apple-system,BlinkMacSystemFont,'Hiragino Sans',sans-serif;background:linear-gradient(180deg,#3a7cb8 0%,#6bbfea 15%,#87CEEB 35%,#a8d8f0 60%,#c8e8f8 80%,#daf0fc 100%);color:#222;min-height:100vh;overflow-x:hidden}
+body{font-family:'Space Grotesk',-apple-system,BlinkMacSystemFont,'Hiragino Sans',sans-serif;background:linear-gradient(180deg,#1a3a2a 0%,#1e4a35 15%,#2d8a7a 40%,#1e6a5a 65%,#14402e 85%,#0d2818 100%);color:#f0f0f0;min-height:100vh;overflow-x:hidden}
 
-/* === CLOUDS (background decoration throughout) === */
+/* === JUNGLE PARTICLES (background decoration throughout) === */
 .clouds-bg{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
-.clouds-bg .cloud{position:absolute;background:rgba(255,255,255,.5);border-radius:50%;filter:blur(25px);animation:drift linear infinite}
-.clouds-bg .cloud:nth-child(1){width:250px;height:70px;top:10%;animation-duration:30s}
-.clouds-bg .cloud:nth-child(2){width:350px;height:90px;top:30%;animation-duration:45s;animation-delay:-15s}
-.clouds-bg .cloud:nth-child(3){width:200px;height:60px;top:55%;animation-duration:35s;animation-delay:-8s}
-.clouds-bg .cloud:nth-child(4){width:280px;height:75px;top:75%;animation-duration:40s;animation-delay:-20s}
-@keyframes drift{from{transform:translateX(-300px)}to{transform:translateX(calc(100vw + 300px))}}
+.clouds-bg .particle{position:absolute;top:-50px}
+/* Leaves */
+.clouds-bg .leaf{border-radius:50% 0 50% 0;filter:blur(1px);opacity:.25}
+.clouds-bg .leaf:nth-child(1){width:30px;height:14px;background:rgba(60,140,80,.5);left:8%;animation:fall 18s linear infinite}
+.clouds-bg .leaf:nth-child(2){width:45px;height:18px;background:rgba(40,120,70,.4);left:25%;animation:fallAlt 24s linear infinite;animation-delay:-6s}
+.clouds-bg .leaf:nth-child(3){width:22px;height:10px;background:rgba(80,160,90,.45);left:50%;animation:fall 20s linear infinite;animation-delay:-3s}
+.clouds-bg .leaf:nth-child(4){width:35px;height:15px;background:rgba(50,130,75,.35);left:72%;animation:fallAlt 22s linear infinite;animation-delay:-10s}
+.clouds-bg .leaf:nth-child(5){width:18px;height:8px;background:rgba(70,150,85,.4);left:40%;animation:fall 26s linear infinite;animation-delay:-14s}
+.clouds-bg .leaf:nth-child(6){width:40px;height:16px;background:rgba(45,110,65,.3);left:88%;animation:fallAlt 16s linear infinite;animation-delay:-8s}
+/* Fireflies */
+.clouds-bg .firefly{width:4px;height:4px;border-radius:50%;background:rgba(218,165,32,.8);box-shadow:0 0 8px 3px rgba(218,165,32,.4),0 0 20px 6px rgba(218,165,32,.15)}
+.clouds-bg .firefly:nth-child(7){left:15%;animation:fall 14s linear infinite,twinkle 2.5s ease-in-out infinite;animation-delay:-2s}
+.clouds-bg .firefly:nth-child(8){width:3px;height:3px;left:35%;animation:fallAlt 20s linear infinite,twinkle 3.2s ease-in-out infinite;animation-delay:-7s}
+.clouds-bg .firefly:nth-child(9){width:5px;height:5px;left:60%;animation:fall 16s linear infinite,twinkle 2s ease-in-out infinite;animation-delay:-1s}
+.clouds-bg .firefly:nth-child(10){width:3px;height:3px;left:80%;animation:fallAlt 22s linear infinite,twinkle 3.8s ease-in-out infinite;animation-delay:-12s}
+.clouds-bg .firefly:nth-child(11){left:45%;animation:fall 18s linear infinite,twinkle 2.8s ease-in-out infinite;animation-delay:-5s}
+.clouds-bg .firefly:nth-child(12){width:5px;height:5px;left:20%;animation:fallAlt 24s linear infinite,twinkle 3.5s ease-in-out infinite;animation-delay:-15s}
+@keyframes fall{0%{transform:translateY(-50px) translateX(0)}25%{transform:translateY(calc(25vh)) translateX(15px)}50%{transform:translateY(calc(50vh)) translateX(-10px)}75%{transform:translateY(calc(75vh)) translateX(12px)}100%{transform:translateY(calc(100vh + 50px)) translateX(-5px)}}
+@keyframes fallAlt{0%{transform:translateY(-50px) translateX(0)}20%{transform:translateY(calc(20vh)) translateX(-12px)}45%{transform:translateY(calc(45vh)) translateX(8px)}70%{transform:translateY(calc(70vh)) translateX(-15px)}100%{transform:translateY(calc(100vh + 50px)) translateX(6px)}}
+@keyframes twinkle{0%,100%{opacity:.3;box-shadow:0 0 4px 1px rgba(218,165,32,.2)}30%{opacity:1;box-shadow:0 0 12px 4px rgba(218,165,32,.5),0 0 24px 8px rgba(218,165,32,.2)}60%{opacity:.5;box-shadow:0 0 6px 2px rgba(218,165,32,.3)}}
+
 
 /* === SPLASH === */
-#splash{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:opacity .8s cubic-bezier(.4,0,.2,1),visibility .8s;background:linear-gradient(180deg,#3a7cb8 0%,#6bbfea 30%,#87CEEB 60%,#a8d8f0 100%)}
+#splash{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:opacity .8s cubic-bezier(.4,0,.2,1),visibility .8s;background:linear-gradient(180deg,#1a3a2a 0%,#2d8a7a 50%,#0d2818 100%)}
 #splash.hidden{opacity:0;visibility:hidden;pointer-events:none}
 #splash .splash-clouds{position:absolute;inset:0;overflow:hidden}
-#splash .splash-clouds .cloud{position:absolute;background:rgba(255,255,255,.45);border-radius:50%;filter:blur(20px);animation:drift linear infinite}
-#splash .splash-clouds .cloud:nth-child(1){width:200px;height:60px;top:12%;animation-duration:25s}
-#splash .splash-clouds .cloud:nth-child(2){width:300px;height:80px;top:38%;animation-duration:35s;animation-delay:-10s}
-#splash .splash-clouds .cloud:nth-child(3){width:160px;height:50px;top:65%;animation-duration:22s;animation-delay:-5s}
+#splash .splash-clouds .particle{position:absolute;top:-50px}
+#splash .splash-clouds .leaf{border-radius:50% 0 50% 0;filter:blur(1px);opacity:.2}
+#splash .splash-clouds .leaf:nth-child(1){width:28px;height:12px;background:rgba(60,140,80,.4);left:12%;animation:fall 16s linear infinite}
+#splash .splash-clouds .leaf:nth-child(2){width:38px;height:16px;background:rgba(45,120,70,.35);left:55%;animation:fallAlt 20s linear infinite;animation-delay:-4s}
+#splash .splash-clouds .leaf:nth-child(3){width:20px;height:9px;background:rgba(70,150,85,.4);left:80%;animation:fall 14s linear infinite;animation-delay:-9s}
+#splash .splash-clouds .firefly{width:4px;height:4px;border-radius:50%;background:rgba(218,165,32,.8);box-shadow:0 0 8px 3px rgba(218,165,32,.4),0 0 20px 6px rgba(218,165,32,.15)}
+#splash .splash-clouds .firefly:nth-child(4){left:25%;animation:fallAlt 12s linear infinite,twinkle 2.5s ease-in-out infinite;animation-delay:-3s}
+#splash .splash-clouds .firefly:nth-child(5){width:3px;height:3px;left:65%;animation:fall 18s linear infinite,twinkle 3s ease-in-out infinite;animation-delay:-8s}
+#splash .splash-clouds .firefly:nth-child(6){width:5px;height:5px;left:40%;animation:fallAlt 15s linear infinite,twinkle 2.2s ease-in-out infinite;animation-delay:-12s}
 #splash .flyer-wrap{position:relative;z-index:1;width:min(88vw,480px);aspect-ratio:1/1;animation:float 4s ease-in-out infinite}
 #splash .flyer-wrap img{width:100%;height:100%;object-fit:cover;border-radius:16px;box-shadow:0 12px 48px rgba(0,0,0,.25),0 0 60px rgba(218,165,32,.15)}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
@@ -51,7 +71,7 @@ body{font-family:'Space Grotesk',-apple-system,BlinkMacSystemFont,'Hiragino Sans
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
 /* === MUSIC TOGGLE === */
-#music-toggle{position:fixed;top:max(env(safe-area-inset-top,16px),16px);right:16px;z-index:200;background:rgba(255,255,255,.3);border:1.5px solid rgba(255,255,255,.4);color:#fff;font-size:1.3rem;width:48px;height:48px;border-radius:50%;cursor:pointer;display:none;align-items:center;justify-content:center;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:transform .15s}
+#music-toggle{position:fixed;top:max(env(safe-area-inset-top,16px),16px);right:16px;z-index:200;background:rgba(0,40,20,.4);border:1.5px solid rgba(255,255,255,.15);color:#fff;font-size:1.3rem;width:48px;height:48px;border-radius:50%;cursor:pointer;display:none;align-items:center;justify-content:center;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:transform .15s}
 #music-toggle:active{transform:scale(.9)}
 #music-toggle.visible{display:flex}
 
@@ -69,37 +89,51 @@ body{font-family:'Space Grotesk',-apple-system,BlinkMacSystemFont,'Hiragino Sans
 
 /* Title */
 .title-block{text-align:center;padding:2.5rem 0 1.5rem}
-.title-block .tagline{font-size:1.2rem;color:rgba(0,0,0,.6);font-style:italic;line-height:1.6}
-.title-block .tagline-jp{font-size:1rem;color:rgba(0,0,0,.4);font-style:italic;margin-top:.4rem}
+.title-block .tagline{font-size:1.2rem;color:rgba(255,255,255,.6);font-style:italic;line-height:1.6}
+.title-block .tagline-jp{font-size:1rem;color:rgba(255,255,255,.35);font-style:italic;margin-top:.4rem}
 
 /* Description */
 .desc-block{padding:1.5rem 0}
-.desc-block .desc{font-size:1.05rem;color:rgba(0,0,0,.65);line-height:1.7;margin-bottom:.3rem}
-.desc-block .desc-jp{font-size:.9rem;color:rgba(0,0,0,.4);line-height:1.6}
+.desc-block .desc{font-size:1.05rem;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:.3rem}
+.desc-block .desc-jp{font-size:.9rem;color:rgba(255,255,255,.35);line-height:1.6}
 
 /* Vol card */
-.vol-card{margin:1rem 0 2rem;padding:1.3rem 1.4rem;border-radius:14px;background:rgba(255,255,255,.35);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.5)}
-.vol-card h2{font-size:1.3rem;font-weight:700;color:var(--gold-dark);margin-bottom:.5rem}
-.vol-card p{font-size:.95rem;color:rgba(0,0,0,.6);line-height:1.65;margin-bottom:.3rem}
-.vol-card .vol-jp{font-size:.85rem;color:rgba(0,0,0,.35)}
+.vol-card{margin:1rem 0 2rem;padding:1.3rem 1.4rem;border-radius:14px;background:rgba(0,40,20,.3);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1)}
+.vol-card h2{font-size:1.3rem;font-weight:700;color:var(--gold);margin-bottom:.6rem}
+.vol-genre .genre-desc{font-size:.95rem;color:rgba(255,255,255,.6);line-height:1.65;margin-bottom:.4rem}
+.vol-genre .genre-desc-jp{font-size:.85rem;color:rgba(255,255,255,.35);line-height:1.6}
+.vol-divider{height:1px;background:rgba(255,255,255,.1);margin:1.2rem 0}
+.artist-header{display:flex;align-items:center;gap:1rem;margin-bottom:.8rem}
+.artist-photo{width:80px;height:80px;border-radius:50%;object-fit:cover;border:2.5px solid var(--gold);box-shadow:0 0 16px rgba(218,165,32,.2);flex-shrink:0}
+.artist-name{font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:.2rem}
+.artist-ig{font-size:.85rem;color:var(--gold);text-decoration:none;font-weight:500}
+.artist-ig:hover{text-decoration:underline}
+.artist-bio{font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.65;margin-bottom:.3rem}
+.artist-bio-en{font-size:.85rem;color:rgba(255,255,255,.35);line-height:1.6;margin-bottom:.6rem}
+.artist-bio-full{max-height:0;overflow:hidden;transition:max-height .5s ease-out,opacity .4s ease-out;opacity:0}
+.artist-bio-full.expanded{max-height:600px;opacity:1;transition:max-height .6s ease-in,opacity .4s ease-in}
+.artist-bio-full-jp{font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:.5rem}
+.artist-bio-full-en{font-size:.85rem;color:rgba(255,255,255,.35);line-height:1.65}
+.read-more-btn{background:none;border:1.5px solid rgba(218,165,32,.4);color:var(--gold);font-size:.8rem;font-weight:600;padding:.4rem 1rem;border-radius:8px;cursor:pointer;margin-top:.6rem;font-family:inherit;letter-spacing:.04em;transition:background .2s,border-color .2s}
+.read-more-btn:hover{background:rgba(218,165,32,.1);border-color:var(--gold)}
 
 /* Info grid */
 .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1.5rem 0}
-.info-item{padding:1rem;border-radius:12px;background:rgba(255,255,255,.3);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.4)}
-.info-item .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-dark);margin-bottom:.3rem;font-weight:700}
-.info-item .val{font-size:.95rem;color:#333;line-height:1.4}
-.info-item .jp{font-size:.8rem;color:rgba(0,0,0,.35);margin-top:.15rem}
-.info-item a{color:var(--gold-dark);text-decoration:none;font-weight:500}
+.info-item{padding:1rem;border-radius:12px;background:rgba(0,40,20,.3);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.1)}
+.info-item .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);margin-bottom:.3rem;font-weight:700}
+.info-item .val{font-size:.95rem;color:rgba(255,255,255,.85);line-height:1.4}
+.info-item .jp{font-size:.8rem;color:rgba(255,255,255,.35);margin-top:.15rem}
+.info-item a{color:var(--gold);text-decoration:none;font-weight:500}
 .info-item a:hover{text-decoration:underline}
 .info-item.full{grid-column:1/-1}
 
 /* Countdown */
 .countdown{text-align:center;padding:2rem 0}
-.countdown .label{font-size:.75rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(0,0,0,.35);margin-bottom:.8rem}
+.countdown .label{font-size:.75rem;text-transform:uppercase;letter-spacing:.2em;color:rgba(255,255,255,.35);margin-bottom:.8rem}
 .countdown .timer{display:flex;justify-content:center;gap:1.5rem}
 .countdown .unit{display:flex;flex-direction:column;align-items:center}
-.countdown .unit .num{font-size:2.8rem;font-weight:700;color:var(--gold-dark);line-height:1}
-.countdown .unit .txt{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(0,0,0,.35);margin-top:.3rem}
+.countdown .unit .num{font-size:2.8rem;font-weight:700;color:var(--gold);line-height:1}
+.countdown .unit .txt{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.35);margin-top:.3rem}
 
 /* Map button */
 .map{margin:1rem 0}
@@ -109,24 +143,38 @@ body{font-family:'Space Grotesk',-apple-system,BlinkMacSystemFont,'Hiragino Sans
 
 /* Newsletter */
 .newsletter{padding:2.5rem 0}
-.newsletter h2{font-size:1.3rem;font-weight:700;margin-bottom:.4rem;color:#333}
-.newsletter p{font-size:.9rem;color:rgba(0,0,0,.45);margin-bottom:1rem;line-height:1.5}
+.newsletter h2{font-size:1.3rem;font-weight:700;margin-bottom:.4rem;color:#f0f0f0}
+.newsletter p{font-size:.9rem;color:rgba(255,255,255,.45);margin-bottom:1rem;line-height:1.5}
 .newsletter form{display:flex;gap:.5rem}
-.newsletter input[type=email]{flex:1;padding:.85rem 1rem;border:1.5px solid rgba(0,0,0,.1);border-radius:12px;font-size:1rem;background:rgba(255,255,255,.5);color:#333;outline:none;transition:border .3s;font-family:inherit}
-.newsletter input[type=email]::placeholder{color:rgba(0,0,0,.25)}
+.newsletter input[type=email]{flex:1;padding:.85rem 1rem;border:1.5px solid rgba(255,255,255,.15);border-radius:12px;font-size:1rem;background:rgba(0,40,20,.3);color:#f0f0f0;outline:none;transition:border .3s;font-family:inherit}
+.newsletter input[type=email]::placeholder{color:rgba(255,255,255,.3)}
 .newsletter input[type=email]:focus{border-color:var(--gold)}
 .newsletter button{background:var(--gold);color:#fff;border:none;padding:.85rem 1.5rem;border-radius:12px;font-weight:700;font-size:1rem;cursor:pointer;white-space:nowrap;transition:background .2s,transform .15s;font-family:inherit}
 .newsletter button:hover{background:#c49318}
 .newsletter button:active{transform:scale(.97)}
-.newsletter .form-msg{margin-top:.6rem;font-size:.85rem;color:#2e7d32;display:none}
+.newsletter .form-msg{margin-top:.6rem;font-size:.85rem;color:var(--gold);display:none}
+
+/* Archive */
+.archive{padding:2rem 0}
+.archive h2{font-size:1.3rem;font-weight:700;color:var(--gold);margin-bottom:1rem}
+.archive-card{display:flex;gap:1rem;padding:1rem 1.2rem;border-radius:14px;background:rgba(0,40,20,.3);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);align-items:center}
+.archive-flyer{width:100px;height:100px;object-fit:cover;border-radius:10px;flex-shrink:0}
+.archive-info h3{font-size:1rem;font-weight:700;color:#f0f0f0;margin-bottom:.3rem}
+.archive-info p{font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.5;margin-bottom:.2rem}
+.archive-info a{color:var(--gold);text-decoration:none;font-size:.9rem;font-weight:600}
+.archive-info a:hover{text-decoration:underline}
 
 /* Notice & Footer */
-.notice{padding:2rem 0;font-size:.75rem;color:rgba(0,0,0,.25);line-height:1.6}
+.notice{padding:2rem 0;font-size:.75rem;color:rgba(255,255,255,.25);line-height:1.6}
 .notice p{margin-bottom:.2rem}
-footer{text-align:center;padding:2rem 0 3rem;font-size:.75rem;color:rgba(0,0,0,.25)}
+footer{text-align:center;padding:2rem 0 3rem;font-size:.75rem;color:rgba(255,255,255,.25)}
 footer .footer-logo{width:min(50vw,200px);margin-bottom:1rem;border-radius:8px}
 footer p{margin:0}
-footer a{color:var(--gold-dark);text-decoration:none}
+footer a{color:var(--gold);text-decoration:none}
+.footer-links{display:flex;justify-content:center;gap:0;flex-wrap:wrap;margin-bottom:.8rem}
+.footer-links a{color:var(--gold);text-decoration:none;font-size:.85rem;font-weight:500;padding:0 .6rem}
+.footer-links a:hover{text-decoration:underline}
+.footer-links a:not(:last-child){border-right:1px solid rgba(255,255,255,.2)}
 
 /* Scroll reveal */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease-out,transform .7s ease-out}
@@ -138,28 +186,41 @@ footer a{color:var(--gold-dark);text-decoration:none}
   .countdown .unit .num{font-size:2rem}
   .info-grid{grid-template-columns:1fr}
   .info-item.full{grid-column:auto}
+  .archive-card{flex-direction:column;text-align:center}
+  .archive-flyer{width:120px;height:120px}
 }
 </style>
 </head>
 <body>
 
-<!-- FLOATING CLOUDS (persistent background) -->
+<!-- JUNGLE PARTICLES (persistent background) -->
 <div class="clouds-bg" aria-hidden="true">
-  <div class="cloud"></div>
-  <div class="cloud"></div>
-  <div class="cloud"></div>
-  <div class="cloud"></div>
+  <div class="particle leaf"></div>
+  <div class="particle leaf"></div>
+  <div class="particle leaf"></div>
+  <div class="particle leaf"></div>
+  <div class="particle leaf"></div>
+  <div class="particle leaf"></div>
+  <div class="particle firefly"></div>
+  <div class="particle firefly"></div>
+  <div class="particle firefly"></div>
+  <div class="particle firefly"></div>
+  <div class="particle firefly"></div>
+  <div class="particle firefly"></div>
 </div>
 
 <!-- SPLASH SCREEN -->
 <div id="splash" onclick="enterSite()">
   <div class="splash-clouds">
-    <div class="cloud"></div>
-    <div class="cloud"></div>
-    <div class="cloud"></div>
+    <div class="particle leaf"></div>
+    <div class="particle leaf"></div>
+    <div class="particle leaf"></div>
+    <div class="particle firefly"></div>
+    <div class="particle firefly"></div>
+    <div class="particle firefly"></div>
   </div>
   <div class="flyer-wrap">
-    <img src="flyer-original.jpg" alt="Diasport flyer" width="2048" height="2048">
+    <img src="flyer-vol2.jpg" alt="Diasport Vol.2 — mitokon" width="2048" height="2048">
   </div>
   <div class="cta">
     <div class="tap">Tap to enter</div>
@@ -179,7 +240,7 @@ footer a{color:var(--gold-dark);text-decoration:none}
 <div id="main">
   <section class="hero">
     <div class="flyer-wrap">
-      <img src="flyer-original.jpg" alt="Diasport — Amaterrace DJys and Friends" width="2048" height="2048">
+      <img src="flyer-vol2.jpg" alt="Diasport Vol.2 — mitokon" width="2048" height="2048">
     </div>
   </section>
 
@@ -195,16 +256,35 @@ footer a{color:var(--gold-dark);text-decoration:none}
     </div>
 
     <div class="vol-card reveal">
-      <h2>Vol.1: Afro Swing</h2>
-      <p>The sound that crossed from the Caribbean to South London and became the UK's heartbeat. Funky rhythms, wavy melodies, sexy vocals and pure energy.</p>
-      <p class="vol-jp">カリブ海からサウスロンドンへ渡りUKの鼓動となったサウンド。ファンキーなリズム、流れるようなメロディ、艶やかなボーカルとピュアエナジーで構成。</p>
+      <div class="vol-genre">
+        <h2>Vol.2: Amapiano</h2>
+        <p class="genre-desc">Amapiano — a genre born in South Africa in the 2010s, blending deep house, jazz, and lounge music with distinctive log drum bass lines. From Pretoria townships to global dancefloors, it's become one of the most exciting sounds in the world.</p>
+        <p class="genre-desc-jp">アマピアノ——2010年代に南アフリカで生まれたジャンル。ディープハウス、ジャズ、ラウンジミュージックにログドラムのベースラインが重なる独特なサウンド。プレトリアのタウンシップから世界のダンスフロアへ。</p>
+      </div>
+      <div class="vol-divider"></div>
+      <div class="vol-artist">
+        <div class="artist-header">
+          <img src="mitokon.jpg" alt="mitokon" class="artist-photo" width="120" height="120">
+          <div class="artist-name-wrap">
+            <h3 class="artist-name">mitokon</h3>
+            <a href="https://instagram.com/mitokon" target="_blank" rel="noopener" class="artist-ig">@mitokon</a>
+          </div>
+        </div>
+        <p class="artist-bio">東京拠点のDJ。南アフリカ発祥のAmapiano、Gqom、Afro Houseに特化。アマピアノディスクガイド「MAG Z02」監修・執筆。TYO GQOMメンバー。Nyege Nyege Festival、FUJI ROCK FESTIVAL出演。</p>
+        <p class="artist-bio-en">Tokyo-based DJ and editor/writer for the Amapiano disc guide "MAG Z02." Specializing in South African dance music — Amapiano, Gqom, Afro House. Member of TYO GQOM. Performed at Nyege Nyege Festival and FUJI ROCK FESTIVAL.</p>
+        <div class="artist-bio-full" id="artist-bio-full">
+          <p class="artist-bio-full-jp">2008年に初めて南部アフリカを訪れて以来、アフリカの音楽と文化に深く魅了され、南アフリカを中心にアフリカ各国を継続的に訪問。旅のなかで出会った最先端のアフリカン・サウンドに強く惹かれ、2017年より始めたDJ活動や、ソーシャルメディア、音楽誌への寄稿を通じて、その魅力を発信し続けている。近年は特にAmapianoのDJとして注目を集め、自身が主催するAmapianoパーティー「Khanya（カニャ）」も毎回好評を博している。また、東京を拠点とするGqomパーティー・クルー「TYO GQOM」のメンバーとしても活動しており、2022年にはウガンダの〈Nyege Nyege Festival〉、2025年には〈FUJI ROCK FESTIVAL'25〉への出演を果たした。</p>
+          <p class="artist-bio-full-en">After first visiting the African continent in 2008, mitokon became deeply immersed in its cultures and has since returned almost every year, traveling across multiple countries including South Africa. Captivated by the energy and innovation of Africa's evolving music scenes, he began sharing emerging sounds through social media and contributions to music publications. Since 2017, mitokon has been actively DJing with a focus on South African dance genres such as Gqom, Kwaito, and Afro House. He is a member of TYO GQOM, Japan's first Gqom party crew, and has performed at Uganda's Nyege Nyege Festival (2022) and FUJI ROCK FESTIVAL (2025).</p>
+        </div>
+        <button class="read-more-btn" id="read-more-btn" onclick="toggleBio()">Read more</button>
+      </div>
     </div>
 
     <div class="info-grid reveal">
       <div class="info-item">
         <div class="lbl">Date</div>
-        <div class="val">Friday, 27 Feb 2026</div>
-        <div class="jp">2月27日（金）</div>
+        <div class="val">Friday, 3 Apr 2026</div>
+        <div class="jp">4月3日（金）</div>
       </div>
       <div class="info-item">
         <div class="lbl">Time</div>
@@ -227,7 +307,7 @@ footer a{color:var(--gold-dark);text-decoration:none}
       </div>
       <div class="info-item full">
         <div class="lbl">Instagram</div>
-        <div class="val"><a href="https://instagram.com/recordcityjp" target="_blank" rel="noopener">@recordcityjp</a></div>
+        <div class="val"><a href="https://instagram.com/diasport.world" target="_blank" rel="noopener">@diasport.world</a> · <a href="https://instagram.com/mitokon" target="_blank" rel="noopener">@mitokon</a></div>
       </div>
     </div>
 
@@ -254,6 +334,19 @@ footer a{color:var(--gold-dark);text-decoration:none}
       <div class="form-msg" id="form-msg">You're on the list! 🎶</div>
     </section>
 
+    <section class="archive reveal">
+      <h2>Past Events</h2>
+      <div class="archive-card">
+        <img src="flyer-original.jpg" alt="Diasport Vol.1" class="archive-flyer">
+        <div class="archive-info">
+          <h3>Vol.1: Afro Swing</h3>
+          <p>27 Feb 2026 · RecordCity, Nishi-Shinjuku</p>
+          <p>Amaterrace DJys and Friends</p>
+          <a href="https://www.mixcloud.com/aquarius_djy/diasport-vol1-record-city-store-2026-02-27-afroswing/" target="_blank" rel="noopener">🎧 Listen on Mixcloud</a>
+        </div>
+      </div>
+    </section>
+
     <div class="notice">
       <p>*Audio and ambient visuals from this session will be recorded. Clips may be shared online.</p>
       <p>*音声と会場の雰囲気を記録して、後日オンラインで共有予定です</p>
@@ -261,6 +354,11 @@ footer a{color:var(--gold-dark);text-decoration:none}
 
     <footer>
       <img src="diasport-logo.png" alt="Diasport" class="footer-logo">
+      <div class="footer-links">
+        <a href="https://www.instagram.com/diasport.world/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.mixcloud.com/aquarius_djy/" target="_blank" rel="noopener">Mixcloud</a>
+        <a href="mailto:hello@diasport.world">hello@diasport.world</a>
+      </div>
       <p>© 2026 Diasport</p>
     </footer>
   </div>
@@ -268,6 +366,7 @@ footer a{color:var(--gold-dark);text-decoration:none}
 
 <script>
 function enterSite(){
+  window.scrollTo(0,0);
   document.getElementById('splash').classList.add('hidden');
   document.getElementById('main').classList.add('visible');
   document.getElementById('music-toggle').classList.add('visible');
@@ -282,7 +381,7 @@ function toggleMusic(){
 
 // Countdown
 (function(){
-  var target=new Date('2026-02-27T19:00:00+09:00').getTime();
+  var target=new Date('2026-04-03T19:00:00+09:00').getTime();
   function update(){
     var now=Date.now(),diff=target-now;
     if(diff<=0){document.getElementById('countdown').innerHTML='<div class="label" style="color:var(--gold);font-weight:700;font-size:1.1rem">🎵 Happening Now! 開催中！</div>';return}
@@ -303,6 +402,14 @@ function toggleMusic(){
   },{threshold:.15,rootMargin:'0px 0px -40px 0px'});
   els.forEach(function(e){obs.observe(e)});
 })();
+
+// Bio read-more toggle
+function toggleBio(){
+  var el=document.getElementById('artist-bio-full');
+  var btn=document.getElementById('read-more-btn');
+  var expanded=el.classList.toggle('expanded');
+  btn.textContent=expanded?'Read less':'Read more';
+}
 
 // Newsletter — localStorage + Google Sheets webhook
 document.getElementById('signup-form').addEventListener('submit',function(e){
